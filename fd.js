@@ -15,3 +15,7 @@ function startVideo() {
    )
 }
 
+video.addEventListener('play', () => {
+
+})
+
