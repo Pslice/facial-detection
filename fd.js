@@ -1,4 +1,4 @@
-const video = document.getElementByID('video');
+const video = document.getElementById('video');
 
 Promise.all([
    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -16,6 +16,12 @@ function startVideo() {
 }
 
 video.addEventListener('play', () => {
-
+   const canvas = faceapi.createCanvasFromMedia(video);
+   document.body.append(canvas);
+   const displaySize = {}
+   setInterval(async () => {
+      const detections = await faceapi.detectAllFaces(video,
+         new faceapi.tinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+   }, 100);
 })
 
